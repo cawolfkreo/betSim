@@ -1,12 +1,24 @@
+/*
+Camilo Zambrano: I'm making this more organized again.
+The idea is to have it in this order:
+
+1. react imports
+2. your react component imports
+    2.1 first the ones that doesn't need {}
+    2.2 the rest
+3. other imports you have
+*/
 import React, { Component } from 'react';
-import { withHistory, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { withTracker } from "meteor/react-meteor-data";
 
 import BasicNav from "./BasicNav.jsx";
 import CategoryPage from "./CategoryPage.jsx";
 import EventPage from "./EventPage.jsx";
 import MyBets from "./MyBets.jsx";
+
+import PropTypes from 'prop-types';
+
+import { withHistory, Link } from 'react-router-dom';
+import { withTracker } from "meteor/react-meteor-data";
 
 import { Bets } from "../../api/Bets";
 import { Categories } from "../../api/Categories";
@@ -256,6 +268,15 @@ MainPage.propTypes = {
     userData: PropTypes.object.isRequired
 }
 
+/*
+Camilo Zambrano: I see your are wrapping yourreact components to acces the database information
+you need. DO NOT DO THAT.
+
+The idea of the withTrackers is to wrap the high order component (the "Root" of the tree) with the props needed
+for the aplication and then he sends them to his childs and those to the childs that also need the information. 
+If you do it this way you are exposing your application to conflicts on the props and also some other problems related
+to Meteor and React fighting for what to send to the child or how to render it.
+*/
 export default withTracker(
     () => {
         Meteor.subscribe("Bets");
