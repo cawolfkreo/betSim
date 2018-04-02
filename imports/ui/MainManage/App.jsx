@@ -1,13 +1,18 @@
+/*
+Camilo Zambrano: This is a small refactor. I'm changing the order of imports so it's more readable 
+and easier to mantain
+*/
 import React, { Component } from 'react';
-import { withHistory } from 'react-router-dom';
-import { withTracker } from "meteor/react-meteor-data";
 
 import AddCoinsModal from './AddCoinsModal.jsx';
 import MainPage from './MainPage.jsx';
 
+import { withHistory } from 'react-router-dom';
+import { withTracker } from "meteor/react-meteor-data";
 import { UserData } from "../../api/UserData";
 
 import "../css/App.css";
+
 
 class App extends Component {
     constructor(props) {
