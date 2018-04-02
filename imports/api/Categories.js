@@ -23,6 +23,10 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   "Categories.getAll"(){
+      /*
+      Camilo Zambrano: I guess more or less all in your API has some security breaches. Here you don't need a check
+      but atleast add see if the user is logged in before giving him all the data you have.
+      */
     let res = Categories.find({}).fetch();
     console.log(res);
   }
