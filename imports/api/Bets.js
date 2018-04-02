@@ -24,6 +24,21 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     "Bets.addBet"(eI, p1, p2, pT, b1, b2, bT, e1, e2, eT){
+        /*
+        Camilo Zambrano: Just inserting every single one of those elements on your data base
+        implies a huge security breach to it. You should check them to prevent a possible
+        object injection. Use a check like the ones below to do that.
+        
+        check(eI, String);
+        check(b1, Object);
+        
+        You should also check for the user to be logged after the check. This prevent other security problems aswell.
+        You can do it with this:
+        
+        if (!this.userId) {
+            throw new Meteor.Error("not-authorized");
+        }
+        */
 
         Bets.insert({
             userId: this.userId,
